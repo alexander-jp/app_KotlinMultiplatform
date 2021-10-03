@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.mundet.app_multiplatform.android.R
-import com.mundet.app_multiplatform.presenter.Presenter
-import com.mundet.app_multiplatform.presenter.View as PresenterView
+import com.mundet.app_multiplatform.ui.presenter.Presenter
+import com.mundet.app_multiplatform.ui.presenter.View as PresenterView
 
 abstract class RootActivity<out V : PresenterView> : AppCompatActivity(), PresenterView {
 

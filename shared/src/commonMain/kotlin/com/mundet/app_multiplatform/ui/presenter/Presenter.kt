@@ -1,4 +1,4 @@
-package com.mundet.app_multiplatform.presenter
+package com.mundet.app_multiplatform.ui.presenter
 
 import com.mundet.app_multiplatform.domain.Either
 import com.mundet.app_multiplatform.domain.Result
