@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.4.10"
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -45,6 +46,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation ("io.ktor:ktor-client-android:1.6.4")
+                implementation ("com.squareup.sqldelight:android-driver:1.5.0")
             }
         }
         val androidTest by getting {
@@ -53,8 +55,18 @@ kotlin {
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+        val iosMain by getting {
+            dependencies {
+                implementation ("com.squareup.sqldelight:native-driver:1.5.0")
+            }
+        }
         val iosTest by getting
+    }
+}
+
+sqldelight {
+    database(name = "pois"){
+        packageName = "com.mundet.app_multiplatform"
     }
 }
 
