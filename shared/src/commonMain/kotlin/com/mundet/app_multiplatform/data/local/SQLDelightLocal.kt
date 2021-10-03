@@ -27,7 +27,7 @@ class SQLDelightLocal (driver: DbDriver) : Local{
 
     }
 
-    override fun savePois(poiList: List<Poi>): Either<Result.Error, Result.Success> = withEither {
+    override suspend fun savePois(poiList: List<Poi>): Either<Result.Error, Result.Success> = withEither {
 
         db.poiQueries.transaction {
             poiList.forEach {
@@ -36,7 +36,7 @@ class SQLDelightLocal (driver: DbDriver) : Local{
         }
         Result.Success
     }
-    
+
     fun Poi.toVo () = PoiVo(id, title, latitude, longitude)
     fun PoiVo.toModel() = Poi(id?:"",title?:"", latitude?:0.0,longitude?:0.0)
 }

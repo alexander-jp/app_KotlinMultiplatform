@@ -1,6 +1,8 @@
 package com.mundet.app_multiplatform.android.view.activity
 
+import android.util.Log
 import com.mundet.app_multiplatform.android.R
+import com.mundet.app_multiplatform.data.local.DbDriver
 import com.mundet.app_multiplatform.data.local.SQLDelightLocal
 import com.mundet.app_multiplatform.data.remote.KtorRemote
 import com.mundet.app_multiplatform.data.repository.CommonPoiRepository
@@ -14,7 +16,9 @@ class PoiListActivity : RootActivity<PoiListView>(), PoiListView {
 
     override val presenter by lazy {
         PoiListPresenter(
-            repository = CommonPoiRepository(local = SQLDelightLocal(), remote = KtorRemote()),
+            repository = CommonPoiRepository(local = SQLDelightLocal(
+                driver = DbDriver(this)
+            ), remote = KtorRemote()),
             executor = Executor(),
             view = this
         )
@@ -22,7 +26,7 @@ class PoiListActivity : RootActivity<PoiListView>(), PoiListView {
     override val layoutId: Int = R.layout.activity_poi_list
 
     override fun registerListener() {
-        TODO("Not yet implemented")
+        //Nothing to do
     }
 
     override fun initializeUi() {
@@ -30,6 +34,11 @@ class PoiListActivity : RootActivity<PoiListView>(), PoiListView {
     }
 
     override fun showPoiList(poiList: List<Poi>) {
-        TODO("Not yet implemented")
+        Log.e(TAG, "Resultado: $poiList")
+    }
+
+    companion object {
+        @JvmStatic
+        val TAG = PoiListActivity::class.simpleName
     }
 }
